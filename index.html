@@ -163,6 +163,61 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-第四次课" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/10/23/第四次课/" class="article-date">
+  	<time datetime="2019-10-23T07:03:59.000Z" itemprop="datePublished">2019-10-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/23/第四次课/">
+        第四次课
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*<br>Mysql第四次课<br> truncate清空表<br> truncate table 表名<br> is  null<br> is not null<br> 模糊查询<br>    like<br>    % 代表一个或多个字符<br>    _ 代表一个字符<br> exists存在<br>    exists里边括住的是一个<br>    查询语句,如果查询语句<br>    有结果，外部查询就正常<br>    执行，如果没结果，外部<br>    查询不执行<br> not exists不存在<br>*/<br>SELECT * FROM course<br>              WHERE cnam IS NOT NULL<br>#模糊查询<br>#查询出姓名中包含“三”的<br>#学生的信息<br>SELECT * FROM StudentInfo<br>      WHERE snam LIKE ‘%三%’;<br>#查询出姓周的同学信息<br>SELECT * FROM StudentInfo<br>      WHERE snam LIKE ‘周%’<br>#如果有安阳市的学生，就把<br>#本班所有学生的信息查询<br>#出来<br>SELECT * FROM StudentInfo<br>           WHERE EXISTS(<br>SELECT * FROM StudentInfo<br>         WHERE address LIKE ‘%许昌%’<br>)</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-第三次课" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
