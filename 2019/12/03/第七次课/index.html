@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>第七次课 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="动态网站开发第七次课讲义一、学习目标1、掌握http协议之响应部分2、熟练掌握Response的相关 API （重定向，路径，输出流）3、掌握ServletContext的常用API4、完成文件下载案例二、具体讲解   2.1、掌握http协议之响应部分  请求消息：客户端发送给服务器端的数据 数据格式：1. 请求行 2. 请求头 3. 请求空行 4. 请求体 响应消息：服务器端发送给客户端的数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七次课">
+<meta property="og:url" content="http://yoursite.com/2019/12/03/第七次课/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="动态网站开发第七次课讲义一、学习目标1、掌握http协议之响应部分2、熟练掌握Response的相关 API （重定向，路径，输出流）3、掌握ServletContext的常用API4、完成文件下载案例二、具体讲解   2.1、掌握http协议之响应部分  请求消息：客户端发送给服务器端的数据 数据格式：1. 请求行 2. 请求头 3. 请求空行 4. 请求体 响应消息：服务器端发送给客户端的数据">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-03T05:41:33.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第七次课">
+<meta name="twitter:description" content="动态网站开发第七次课讲义一、学习目标1、掌握http协议之响应部分2、熟练掌握Response的相关 API （重定向，路径，输出流）3、掌握ServletContext的常用API4、完成文件下载案例二、具体讲解   2.1、掌握http协议之响应部分  请求消息：客户端发送给服务器端的数据 数据格式：1. 请求行 2. 请求头 3. 请求空行 4. 请求体 响应消息：服务器端发送给客户端的数据">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-第七次课" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/03/第七次课/" class="article-date">
+  	<time datetime="2019-12-03T05:40:17.000Z" itemprop="datePublished">2019-12-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第七次课
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>动态网站开发第七次课讲义<br>一、学习目标<br>1、掌握http协议之响应部分<br>2、熟练掌握Response的相关 API （重定向，路径，输出流）<br>3、掌握ServletContext的常用API<br>4、完成文件下载案例<br>二、具体讲解<br>   2.1、掌握http协议之响应部分</p>
+<ol>
+<li>请求消息：客户端发送给服务器端的数据<br> 数据格式：<pre><code>1. 请求行
+2. 请求头
+3. 请求空行
+4. 请求体</code></pre><ol start="2">
+<li>响应消息：服务器端发送给客户端的数据<br>数据格式：<ol>
+<li>响应行<ol>
+<li>组成：协议/版本 响应状态码 状态码描述</li>
+<li>响应状态码：服务器告诉客户端浏览器本次请求和响应的一个状态。<ol>
+<li>状态码都是3位数字 </li>
+<li>分类：</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>1xx：服务器就收客户端消息，但没有接受完成，等待一段时       间后，发送1xx多状态码<pre><code>2. 2xx：成功。代表：200
+3. 3xx：重定向。代表：302(重定向)，304(访问缓存)
+4. 4xx：客户端错误。
+    代表：
+        404（请求路径没有对应的资源） 
+        405：请求方式没有对应的doXxx方法
+5. 5xx：服务器端错误。代表：500(服务器内部出现异常)        </code></pre><ol start="2">
+<li>响应头：<ol>
+<li>格式：头名称： 值</li>
+<li>常见的响应头：<ol>
+<li>Content-Type：服务器告诉客户端本次响应体数据格式以及编码格式</li>
+<li>Content-disposition：服务器告诉客户端以什么格式打开响应体数据<br>MIME类型<br>值：<br>  in-line:默认值,在当前页面内打开<br>  attachment;filename=xxx：以附件形式打开响应体。文件下载</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>响应空行</li>
+<li>响应体:传输的数据<br>响应字符串格式<br>HTTP/1.1 200 OK<br>Content-Type: text/html;charset=UTF-8<br>Content-Length: 101<br>Date: Wed, 06 Jun 2018 07:08:42 GMT<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+ <title>$Title$</title>
+</head>
+<body>
+hello , response
+</body>
+</html>
+
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>2.2、熟练掌握Response的相关 API （重定向，路径，输出流）<br>    Response对象<br>       功能：设置响应消息<br>        1. 设置响应行<br>            1. 格式：HTTP/1.1 200 ok<br>            2. 设置状态码：setStatus(int sc)<br>        2. 设置响应头：setHeader(String name, String value)<br>        3. 设置响应体：<br>            使用步骤：<br>                1. 获取输出流<br>                    字符输出流：PrintWriter getWriter()<br>                    字节输出流：ServletOutputStream getOutputStream()<br>                2. 使用输出流，将数据输出到客户端浏览器<br>    案例：<br>        1. 完成重定向<br>            重定向：资源跳转的方式，重定向为向另外一个servlet<br>                    或另外一个jsp发送一个新的请求<br>            代码实现：<br>              1. 设置状态码为302<br>                response.setStatus(302);<br>              2.设置响应头location<br>                response.setHeader(“location”,”/day15/responseDemo2”);<br>                //简单的重定向方法<br>                response.sendRedirect(“/day15/responseDemo2”);<br>             重定向的特点:redirect<br>                1. 地址栏发生变化<br>                2. 重定向可以访问其他站点(服务器)的资源<br>                3. 重定向是两次请求。不能使用request对象来共享数据<br>             转发的特点：forward<br>                1. 转发地址栏路径不变<br>                2. 转发只能访问当前服务器下的资源<br>                3. 转发是一次请求，可以使用request对象来共享数据<br>             forward 和  redirect 区别<br>              路径写法：<br>                1. 路径分类<br>                    1. 相对路径：通过相对路径不可以确定唯一资源<br>                        如：./index.html<br>                          不以/开头，以.开头路径<br>                          规则：找到当前资源和目标资源之间的相对位置关系<br>                            ./：当前目录<br>                            ../:后退一级目录<br>                    2. 绝对路径：通过绝对路径可以确定唯一资源<br>    如：<a href="http://localhost/day15/responseDemo2" target="_blank" rel="noopener">http://localhost/day15/responseDemo2</a>             /day15/responseDemo2     以/开头的路径<br>规则：判断定义的路径是给谁用的？判断请求将来从哪儿发出<br>                         给客户端浏览器使用：需要加虚拟目录(项目的访问路径)<br>                                建议虚拟目录动态获取：request.getContextPath()<br>                                <a> , <form> 重定向…<br>                         给服务器使用：不需要加虚拟目录<br>                                转发路径<br>        2. 服务器输出字符数据到浏览器<br>             步骤：<br>                1. 获取字符输出流<br>                2. 输出数据<br>             注意：<br>                乱码问题：<br>                  1. PrintWriter pw = response.getWriter();获取的流的默认编码是ISO-8859-1<br>              2. 设置该流的默认编码<br>              //简单的形式，设置编码，是在获取流之前设置<br>                 response.setContentType(“text/html;charset=utf-8”);<br>        3. 服务器输出字节数据到浏览器<br>            步骤：<br>                1. 获取字节输出流<br>                2. 输出数据<br>        4. 验证码<br>            1. 本质：图片<br>            2. 目的：防止恶意表单注册</form></a></p>
+<p>2.3、掌握ServletContext的常用API<br>Servlet有四大域对象，pageContext request session application<br>request       HttpServletRequest<br>session       HttpSession<br>application    ServletContext</p>
+<ol>
+<li>概念：代表整个web应用，可以和程序的容器(服务器)来通信<ol start="2">
+<li>获取：<ol>
+<li>通过request对象获取<br> request.getServletContext();</li>
+<li>通过HttpServlet获取<br> this.getServletContext();</li>
+</ol>
+</li>
+<li>功能：<ol>
+<li>获取MIME类型：<ul>
+<li>MIME类型:在互联网通信过程中定义的一种文件数据类型<ul>
+<li>格式： 大类型/小类型   text/html        image/jpeg</li>
+</ul>
+</li>
+<li>获取：String getMimeType(String file)  </li>
+</ul>
+</li>
+<li>域对象：共享数据<ol>
+<li>setAttribute(String name,Object value)</li>
+<li>getAttribute(String name)</li>
+<li>removeAttribute(String name)</li>
+</ol>
+<ul>
+<li>ServletContext对象范围：所有用户所有请求的数据</li>
+</ul>
+</li>
+<li>获取文件的真实(服务器)路径<ol>
+<li>方法：String getRealPath(String path)<br>String b = context.getRealPath(“/b.txt”);//web目录下资源访问<br>System.out.println(b);<br>String c = context.getRealPath(“/WEB-INF/c.txt”);//WEB-INF目录下的资源访问<br>System.out.println(c);<br>String a = context.getRealPath(“/WEB-INF/classes/a.txt”);//src目录下的资源访问<br>System.out.println(a);</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>4、完成文件下载案例<pre><code>文件下载需求：
+  1. 页面显示超链接
+  2. 点击超链接后弹出下载提示框
+  3. 完成图片文件下载
+分析：
+  1. 超链接指向的资源如果能够被浏览器解析，则在浏览器中展示，如果不能解析，则弹出下载提示框。不满足需求
+  2. 任何资源都必须弹出下载提示框
+  3. 使用响应头设置资源的打开方式：
+   content-disposition:attachment;filename=xxx
+步骤：
+  1. 定义页面，编辑超链接href属性，指向Servlet，传递资源名称filename
+  2. 定义Servlet
+      1. 获取文件名称
+      2. 使用字节输入流加载文件进内存
+      3. 指定response的响应头： content-disposition:attachment;filename=xxx
+      4. 将数据写出到response输出流
+问题：
+    中文文件问题
+       解决思路：
+          1. 获取客户端使用的浏览器版本信息
+          2. 根据不同的版本信息，设置filename的编码方式不同</code></pre></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/03/第六次课/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第六次课</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="第七次课" data-title="第七次课" data-url="http://yoursite.com/2019/12/03/第七次课/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="第七次课">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 John Doe
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
